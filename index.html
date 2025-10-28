@@ -51,7 +51,9 @@
         /* ------------------------------------- */
         .hero-section {
             position: relative;
+            /* CORRECCIÓN: '100vw' causa desborde. Se cambia a '100%' */
             width: 100%;
+            /* CORRECCIÓN: Altura reducida de 100vh a 90vh (altura de celular) */
             height: 90vh;
             background: url('fotonovios1.jpg') no-repeat center center/cover;
             display: flex;
@@ -62,9 +64,11 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             padding-bottom: 5vh;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* CORRECCIÓN: box-sizing previene desbordes por padding */
             box-sizing: border-box;
         }
         
+        /* CORRECCIÓN: Contenedor para el texto de inicio con padding */
         .hero-content {
             position: relative;
             width: 100%;
@@ -120,6 +124,7 @@
         .countdown {
             font-family: var(--font-countdown);
             font-weight: 300;
+            /* CORRECCIÓN: Letras de cuenta regresiva más grandes */
             font-size: 2.5em; /* Aumentado de 2.0em */
             margin-top: 25px;
             background-color: rgba(0, 0, 0, 0.4);
@@ -129,7 +134,8 @@
         }
         .countdown span {
             display: block;
-            font-size: 0.4em; /* Ajustado para el nuevo tamaño de fuente */
+            /* CORRECCIÓN: Ajustado para el nuevo tamaño de fuente */
+            font-size: 0.4em;
             font-weight: 400;
         }
         .countdown div {
@@ -208,7 +214,7 @@
             margin-bottom: 10px;
         }
         
-        /* Estilos de botón para el enlace de ubicación */
+        /* CORRECCIÓN: Estilos de botón para el enlace de ubicación */
         .location-link {
             display: inline-block;
             text-align: center;
@@ -303,6 +309,7 @@
 
         .gallery-wrapper {
             position: relative;
+            /* CORRECCIÓN: '100vw' causa desborde. Se cambia a '100%' */
             width: 100%;
             left: 50%;
             transform: translateX(-50%);
@@ -414,9 +421,17 @@
             padding-top: 20px;
             margin-bottom: 0;
         }
+        
+        /* ****** INICIO CORRECCIÓN FOOTER ****** */
+        /* Esta regla arregla la posición de la fecha en el footer */
         footer .date-text {
+            display: block; /* Anula el 'inline-block' para que se ponga debajo */
+            margin-top: 10px; /* Le da espacio de los nombres */
             padding-bottom: 20px;
+            /* Mantiene el fondo y padding del .date-text general, solo cambia el display */
         }
+        /* ****** FIN CORRECCIÓN FOOTER ****** */
+
         footer p {
             color: rgba(255, 255, 255, 0.8);
             font-family: var(--font-body);
@@ -433,6 +448,7 @@
             z-index: 999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; /* Centra hijos */
             flex-wrap: wrap; gap: 0px;
+            /* CORRECCIÓN: box-sizing previene desbordes por padding */
             box-sizing: border-box;
 
             /* Lógica de aparición */
@@ -485,15 +501,15 @@
             height: 35px; width: auto; /* Tamaño referencia */
             vertical-align: middle; /* Importante para display: block */
             display: block; /* Asegura que sea un bloque */
-             /* margin-bottom es manejado por el contenedor ahora */
         }
         
-        /* Centrado del logo en el footer */
+        /* CORRECCIÓN: Centrado del logo en el footer */
         .footer-text .logo-link {
             text-decoration: none;
             display: block; 
             width: fit-content;
-            margin-bottom: 3px; 
+            margin-bottom: 3px;
+            /* Se eliminan los 'margin: auto' conflictivos */
         }
         
         @media (max-width: 600px) {
@@ -511,9 +527,11 @@
             <div class="names-box">
                 <h1>Juan <span class="ampersand">&</span> María</h1>
             </div>
+            
             <div class="date-text">
                 20.05.2027 | Nuestra Boda
             </div>
+            
             <div class="countdown" id="countdown">
                 </div>
         </div>
@@ -529,6 +547,7 @@
 
 
         <h2>Itinerario</h2>
+        
         <p style="font-family: var(--font-body); font-weight: 700; color: var(--color-acento); margin-top: -10px; margin-bottom: 30px; font-size: 1.1em;">
             Jueves, 20 de Mayo de 2027
         </p>
