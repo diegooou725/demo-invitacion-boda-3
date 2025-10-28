@@ -51,9 +51,7 @@
         /* ------------------------------------- */
         .hero-section {
             position: relative;
-            /* CORRECCIÓN: '100vw' causa desborde horizontal. '100%' lo soluciona. */
             width: 100%;
-            /* CORRECCIÓN: '100vh' es muy alto, '90vh' se ajusta mejor a "alto de celular". */
             height: 90vh;
             background: url('fotonovios1.jpg') no-repeat center center/cover;
             display: flex;
@@ -64,11 +62,9 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             padding-bottom: 5vh;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            /* CORRECCIÓN: box-sizing previene desbordes por padding */
             box-sizing: border-box;
         }
         
-        /* CORRECCIÓN: Contenedor para el texto de inicio con padding */
         .hero-content {
             position: relative;
             width: 100%;
@@ -76,7 +72,6 @@
             margin: 0 auto; /* Centrar */
             padding: 0 15px; /* Padding horizontal para que no toque bordes */
             box-sizing: border-box; /* Incluir padding en el ancho */
-            /* Flexbox para centrar el contenido (ya que es el contenedor) */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -105,19 +100,26 @@
             margin: 0 8px;
             color: var(--color-blanco);
         }
+        
+        /* CORRECCIÓN: Estilos para la fecha con fondo opaco */
         .date-text {
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 0.9em;
             letter-spacing: 1px;
             margin-top: 0;
-            padding-bottom: 20px;
+            padding: 10px 20px; /* Aumentamos el padding para el fondo */
             border-bottom: var(--border-finos);
+            background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
+            border-radius: 5px; /* Bordes ligeramente redondeados */
+            display: inline-block; /* Para que el fondo se ajuste al texto */
+            backdrop-filter: blur(2px); /* Efecto de desenfoque, si el navegador lo soporta */
+            -webkit-backdrop-filter: blur(2px); /* Para compatibilidad con Safari */
         }
+
         .countdown {
             font-family: var(--font-countdown);
             font-weight: 300;
-            /* CORRECCIÓN: Letras de cuenta regresiva más grandes */
             font-size: 2.5em; /* Aumentado de 2.0em */
             margin-top: 25px;
             background-color: rgba(0, 0, 0, 0.4);
@@ -127,8 +129,7 @@
         }
         .countdown span {
             display: block;
-            /* CORRECCIÓN: Ajustado para el nuevo tamaño de fuente */
-            font-size: 0.4em;
+            font-size: 0.4em; /* Ajustado para el nuevo tamaño de fuente */
             font-weight: 400;
         }
         .countdown div {
@@ -207,26 +208,26 @@
             margin-bottom: 10px;
         }
         
-        /* CORRECCIÓN: Estilos de botón para el enlace de ubicación */
+        /* Estilos de botón para el enlace de ubicación */
         .location-link {
-            display: inline-block; /* Cambiado de block */
+            display: inline-block;
             text-align: center;
             font-family: var(--font-body);
-            font-weight: 700; /* Texto más grueso */
-            color: var(--color-blanco); /* Texto blanco */
-            background-color: var(--color-acento); /* Fondo color acento */
+            font-weight: 700;
+            color: var(--color-blanco);
+            background-color: var(--color-acento);
             text-decoration: none;
-            padding: 10px 20px; /* Padding de botón */
+            padding: 10px 20px;
             margin-top: 10px;
             transition: background-color var(--transition-duration), transform 0.2s ease;
             letter-spacing: 0.5px;
-            border-radius: 8px; /* Esquinas redondeadas */
+            border-radius: 8px;
             border: 1px solid var(--color-acento);
         }
         .location-link:hover {
             color: var(--color-blanco);
-            background-color: var(--color-acento-oscuro); /* Color más oscuro al pasar el mouse */
-            transform: translateY(-2px); /* Efecto de levantar */
+            background-color: var(--color-acento-oscuro);
+            transform: translateY(-2px);
         }
 
         /* ------------------------------------- */
@@ -302,7 +303,6 @@
 
         .gallery-wrapper {
             position: relative;
-            /* CORRECCIÓN: '100vw' causa desborde horizontal. '100%' lo soluciona. */
             width: 100%;
             left: 50%;
             transform: translateX(-50%);
@@ -424,7 +424,7 @@
             margin-top: 20px;
         }
 
-/* ****** INICIO ESTILOS FOOTER FIJO (NUEVA CORRECCIÓN CENTRADO LOGO) ****** */
+/* ****** INICIO ESTILOS FOOTER FIJO ****** */
         #sticky-footer {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background-color: var(--color-acento); /* <-- BORGOÑA */
@@ -433,7 +433,6 @@
             z-index: 999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; /* Centra hijos */
             flex-wrap: wrap; gap: 0px;
-            /* CORRECCIÓN: box-sizing previene desbordes por padding */
             box-sizing: border-box;
 
             /* Lógica de aparición */
@@ -489,13 +488,12 @@
              /* margin-bottom es manejado por el contenedor ahora */
         }
         
-        /* CORRECCIÓN: Centrado del logo en el footer */
+        /* Centrado del logo en el footer */
         .footer-text .logo-link {
             text-decoration: none;
             display: block; 
             width: fit-content;
-            margin-bottom: 3px; /* Solo dejamos el margen inferior */
-            /* Se eliminan los 'margin: auto', 'margin-left' y 'margin-right' conflictivos */
+            margin-bottom: 3px; 
         }
         
         @media (max-width: 600px) {
@@ -531,6 +529,10 @@
 
 
         <h2>Itinerario</h2>
+        <p style="font-family: var(--font-body); font-weight: 700; color: var(--color-acento); margin-top: -10px; margin-bottom: 30px; font-size: 1.1em;">
+            Jueves, 20 de Mayo de 2027
+        </p>
+
         <div class="itinerary-container">
             <div class="itinerary-item">
                 <h3>Ceremonia Religiosa</h3>
