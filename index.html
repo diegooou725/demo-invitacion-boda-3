@@ -51,10 +51,10 @@
         /* ------------------------------------- */
         .hero-section {
             position: relative;
-            /* CORRECCIÓN: '100vw' causa desborde horizontal. '100%' lo soluciona. */
-            width: 100%; 
-            /* CORRECCIÓN: '100vh' es muy alto, '90vh' se ajusta mejor a "alto de celular". */
-            height: 90vh; 
+            /* CORRECCIÓN 1: '100vw' causa desborde. Se cambia a '100%' */
+            width: 100%;
+            /* CORRECCIÓN 2: Altura reducida de 100vh a 90vh (altura de celular) */
+            height: 90vh;
             background: url('fotonovios1.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
@@ -64,7 +64,20 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             padding-bottom: 5vh;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* Añadimos box-sizing para que el padding no afecte el ancho */
+            box-sizing: border-box;
         }
+        
+        /* CORRECCIÓN 3: Nuevo contenedor para el texto de inicio con padding */
+        .hero-content {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Ancho máximo para el contenido */
+            margin: 0 auto; /* Centrar */
+            padding: 0 15px; /* Padding horizontal para que no toque bordes */
+            box-sizing: border-box; /* Incluir padding en el ancho */
+        }
+        
         .names-box {
             border-top: var(--border-finos);
             border-left: var(--border-finos);
@@ -100,7 +113,8 @@
         .countdown {
             font-family: var(--font-countdown);
             font-weight: 300;
-            font-size: 2.0em;
+            /* CORRECCIÓN 4: Letras de cuenta regresiva más grandes */
+            font-size: 2.5em; /* Aumentado de 2.0em */
             margin-top: 25px;
             background-color: rgba(0, 0, 0, 0.4);
             padding: 10px 20px;
@@ -109,7 +123,7 @@
         }
         .countdown span {
             display: block;
-            font-size: 0.45em;
+            font-size: 0.4em; /* Ajustado de 0.45em */
             font-weight: 400;
         }
         .countdown div {
@@ -276,7 +290,7 @@
 
         .gallery-wrapper {
             position: relative;
-            /* CORRECCIÓN: '100vw' causa desborde horizontal. '100%' lo soluciona. */
+            /* CORRECCIÓN 1: '100vw' causa desborde. Se cambia a '100%' */
             width: 100%;
             left: 50%;
             transform: translateX(-50%);
@@ -407,8 +421,8 @@
             z-index: 999;
             display: flex; flex-direction: column; justify-content: center; align-items: center; /* Centra hijos */
             flex-wrap: wrap; gap: 0px;
-            /* CORRECCIÓN: box-sizing previene desbordes por padding */
-            box-sizing: border-box; 
+            /* CORRECCIÓN 5: Añadido box-sizing para que el padding no desborde el ancho */
+            box-sizing: border-box;
 
             /* Lógica de aparición */
             visibility: hidden;
@@ -463,16 +477,15 @@
              /* margin-bottom es manejado por el contenedor ahora */
         }
         
-        /* ****** INICIO CORRECCIÓN CENTRADO LOGO ****** */
+        /* CORRECCIÓN 6: Regla CSS para centrar el logo del footer */
         .footer-text .logo-link {
             text-decoration: none;
             display: block; /* Convertir el enlace en bloque */
             width: fit-content; /* Ancho se ajusta al contenido (la imagen) */
             margin-bottom: 3px; /* Solo dejamos el margen inferior */
-            /* Se eliminan los 'margin: auto' conflictivos */
+            /* Se eliminan los 'margin: auto', 'margin-left' y 'margin-right' conflictivos */
         }
-        /* ****** FIN CORRECCIÓN CENTRADO LOGO ****** */
-
+        
         @media (max-width: 600px) {
             #sticky-footer { justify-content: center; text-align: center; padding: 12px 15px; }
             .footer-text { width: 100%; margin-bottom: 5px; text-align: center; }
@@ -484,7 +497,6 @@
 <body>
 
     <section class="hero-section">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="names-box">
                 <h1>Juan <span class="ampersand">&</span> María</h1>
@@ -554,7 +566,9 @@
         <h2>Nuestra Historia en Imágenes</h2>
         <p style="font-size:0.9em; color:var(--color-link); margin-bottom:20px;">Toca para pausar el movimiento</p>
 
-    </div> <div class="gallery-wrapper" id="gallery-wrapper">
+    </div> 
+    
+    <div class="gallery-wrapper" id="gallery-wrapper">
         <div class="collage-track">
              <img src="car1.jpg" alt="Foto 1" onclick="openLightbox(this)" loading="lazy">
             <img src="car2.jpg" alt="Foto 2" onclick="openLightbox(this)" loading="lazy">
