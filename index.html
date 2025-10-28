@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan & María - Boda Elegante</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Raleway:wght@300;400;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* ------------------------------------- */
+        /* CSS Base y Variables */
+        /* ------------------------------------- */
+
+        :root {
+            --color-acento: #722F37;        /* Borgoña / Vino */
+            --color-base: #FFFFFF;
+            --color-texto: #333333;         /* Gris Oscuro (reemplaza --negro-carbon y --gris-medio) */
+            --color-link: #666666;
+            --color-blanco: #FFFFFF;        /* Blanco (reemplaza --blanco-nieve) */
+            --font-display: 'Tenor Sans', sans-serif;
+            --font-body: 'Raleway', sans-serif; /* Reemplaza Merriweather/Nunito para cuerpo */
+            --font-countdown: 'Cormorant Garamond', serif;
+            --transition-duration: 0.3s;
+            --border-finos: 1px solid rgba(255, 255, 255, 0.7);
+             /* Variable para hover del botón WhatsApp */
+            --color-acento-oscuro: #5e262c; /* Tono más oscuro de Borgoña */
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            margin: 0;
+            padding-bottom: 80px; /* Espacio para el footer fijo */
+            background-color: var(--color-base);
+            color: var(--color-texto);
+            text-align: center;
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 768px; /* Mantenemos nuestro max-width */
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* --- ESTILOS DE LA INVITACIÓN (Mismos de antes) --- */
+        /* ------------------------------------- */
+        /* 1. Sección Principal (Hero) */
+        /* ------------------------------------- */
+        .hero-section {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('fotonovios1.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: var(--color-blanco);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            padding-bottom: 5vh;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .names-box {
+            border-top: var(--border-finos);
+            border-left: var(--border-finos);
+            border-right: var(--border-finos);
+            padding: 20px 10px 0;
+            margin-bottom: 0;
+            display: inline-block;
+        }
+        .names-box h1 {
+            font-family: var(--font-display);
+            font-size: 3em;
+            font-weight: 400;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .names-box .ampersand {
+            font-size: 0.7em;
+            vertical-align: super;
+            margin: 0 8px;
+            color: var(--color-blanco);
+        }
+        .date-text {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            margin-top: 0;
+            padding-bottom: 20px;
+            border-bottom: var(--border-finos);
+        }
+        .countdown {
+            font-family: var(--font-countdown);
+            font-weight: 300;
+            font-size: 2.0em;
+            margin-top: 25px;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .countdown span {
+            display: block;
+            font-size: 0.45em;
+            font-weight: 400;
+        }
+        .countdown div {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        /* ------------------------------------- */
+        /* Títulos y Secciones */
+        /* ------------------------------------- */
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--color-acento);
+            font-size: 1.8em;
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--color-acento);
+            margin: 10px auto 0;
+        }
+        h3 {
+             font-family: var(--font-display);
+             color: var(--color-acento);
+             font-weight: 700;
+             font-size: 1.2em;
+             margin-bottom: 8px;
+        }
+        .card {
+            padding: 25px 0;
+            margin: 25px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        .card p { text-align: center; }
+
+        /* ------------------------------------- */
+        /* 3. Itinerario (Lado-a-Lado) */
+        /* ------------------------------------- */
+        .itinerary-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin: 25px 0;
+            padding: 0;
+            text-align: center;
+            background-color: #fcfcfc;
+        }
+        .itinerary-item {
+            flex: 1;
+            padding: 25px 10px;
+        }
+        .itinerary-item:first-child {
+            border-right: 1px solid #ccc;
+        }
+        .itinerary-item h3 {
+            margin-top: 0;
+        }
+        .itinerary-item p {
+            margin-bottom: 15px;
+        }
+        .itinerary-time {
+            font-family: var(--font-countdown);
+            font-size: 1.5em;
+            font-weight: 400;
+            color: var(--color-acento);
+            display: block;
+            margin-bottom: 10px;
+        }
+        .location-link {
+            display: block;
+            text-align: center;
+            font-family: var(--font-body);
+            font-weight: 300;
+            color: var(--color-link);
+            text-decoration: none;
+            padding: 10px 0;
+            margin-top: 10px;
+            transition: color var(--transition-duration);
+            letter-spacing: 0.5px;
+        }
+        .location-link:hover {
+            color: var(--color-acento);
+        }
+
+        /* ------------------------------------- */
+        /* 4. Formulario de Confirmación (RSVP) */
+        /* ------------------------------------- */
+        .rsvp-card {
+            background-color: var(--color-base);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            padding: 25px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        #rsvp-form {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #rsvp-form label {
+            width: 100%;
+            max-width: 350px;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: 0.9em;
+            color: var(--color-acento);
+        }
+        #rsvp-form input[type="text"],
+        #rsvp-form input[type="number"],
+        #rsvp-form select {
+            width: calc(100% - 24px);
+            max-width: 350px;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: transparent;
+            font-family: var(--font-body);
+            font-size: 1em;
+            color: var(--color-texto);
+        }
+        #rsvp-form button {
+            background-color: var(--color-acento);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color var(--transition-duration);
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            margin: 20px auto 0;
+        }
+        #rsvp-form button:hover {
+            background-color: #9A4A55;
+        }
+
+        /* ------------------------------------- */
+        /* 5. Galería (Collage en Cadena Infinita) */
+        /* ------------------------------------- */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-3360px); }
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            background-color: #fcfcfc;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 30px 0;
+            min-height: 300px;
+            cursor: grab;
+        }
+        .gallery-wrapper::before, .gallery-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 10%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .gallery-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #fcfcfc 0%, rgba(252, 252, 252, 0) 100%);
+        }
+        .gallery-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #fcfcfc 0%, rgba(252, 252, 252, 0) 100%);
+        }
+
+        .collage-track {
+            display: flex;
+            flex-wrap: nowrap;
+            width: calc(2 * 3360px);
+            animation: scroll 180s linear infinite;
+            will-change: transform;
+        }
+        .gallery-wrapper.paused .collage-track {
+            animation-play-state: paused;
+        }
+
+        .collage-track img {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            padding: 10px;
+            padding-bottom: 30px;
+            background-color: var(--color-base);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            flex-shrink: 0;
+            margin-left: -60px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .collage-track img:nth-child(4n+1) { transform: rotate(3deg) translateY(10px); }
+        .collage-track img:nth-child(4n+2) { transform: rotate(-2deg) translateY(-5px); }
+        .collage-track img:nth-child(4n+3) { transform: rotate(-4deg) translateY(15px); }
+        .collage-track img:nth-child(4n+4) { transform: rotate(1deg) translateY(-10px); }
+        .collage-track img:hover {
+            transform: scale(1.05) rotate(0deg) translateY(0);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* ------------------------------------- */
+        /* Lightbox (No cambia) */
+        /* ------------------------------------- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 700px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* ------------------------------------- */
+        /* Footer Principal */
+        /* ------------------------------------- */
+        footer {
+            margin-top: 60px;
+            padding: 40px 0;
+            background-color: var(--color-acento);
+            color: var(--color-blanco);
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer .names-box {
+            padding-top: 20px;
+            margin-bottom: 0;
+        }
+        footer .date-text {
+            padding-bottom: 20px;
+        }
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-body);
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+/* ****** INICIO ESTILOS FOOTER FIJO (NUEVA CORRECCIÓN CENTRADO LOGO) ****** */
+        #sticky-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--color-acento); /* <-- BORGOÑA */
+            padding: 8px 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; /* Centra hijos */
+            flex-wrap: wrap; gap: 0px;
+
+            /* Lógica de aparición */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s;
+        }
+        #sticky-footer.visible {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .footer-text {
+            display: flex; flex-direction: column; align-items: center; /* Centra hijos (logo y texto) */
+            font-size: 0.75rem;
+            color: var(--color-blanco); /* <-- TEXTO BLANCO */
+            text-align: center; width: 100%; /* Ocupa ancho */
+            margin-bottom: 4px; line-height: 1.3;
+            font-family: var(--font-body);
+        }
+        /* Ajuste para el texto debajo del logo */
+        .footer-text-content {
+             display: block; /* Asegura que ocupe su línea */
+             width: 100%; /* Ocupa el ancho */
+             text-align: center; /* Centra el texto */
+        }
+
+        .whatsapp-button {
+            display: inline-flex; align-items: center;
+            background-color: var(--color-blanco); /* <-- BOTÓN BLANCO */
+            color: var(--color-acento); /* <-- TEXTO BORGOÑA */
+            padding: 6px 12px; border-radius: 5px;
+            font-size: 0.8rem; font-weight: 700; text-decoration: none;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+            width: 100%; max-width: 300px; justify-content: center;
+            font-family: var(--font-body);
+            margin-top: 0px;
+        }
+        .whatsapp-button svg {
+            width: 14px; height: 14px;
+            fill: var(--color-acento); /* <-- ICONO BORGOÑA */
+            margin-right: 6px;
+        }
+        .whatsapp-button:hover {
+             background-color: #f0f0f0;
+        }
+        .footer-logo {
+            height: 35px; width: auto; /* Tamaño referencia */
+            vertical-align: middle; /* Importante para display: block */
+            display: block; /* Asegura que sea un bloque */
+             /* margin-bottom es manejado por el contenedor ahora */
+        }
+        .footer-text .logo-link {
+            text-decoration: none;
+            display: block; /* Convertir el enlace en bloque */
+            width: fit-content; /* Ancho se ajusta al contenido (la imagen) */
+            margin: 0 auto 3px auto; /* Centrar horizontalmente y añadir margen inferior */
+            margin-right: auto; /* Forzar centrado con margin auto */
+            margin-left: auto; /* Forzar centrado con margin auto */
+        }
+        @media (max-width: 600px) {
+            #sticky-footer { justify-content: center; text-align: center; padding: 12px 15px; }
+            .footer-text { width: 100%; margin-bottom: 5px; text-align: center; }
+        }
+        /* ****** FIN ESTILOS FOOTER FIJO ****** */
+
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="names-box">
+                <h1>Juan <span class="ampersand">&</span> María</h1>
+            </div>
+            <div class="date-text">
+                20.05.2027 | Nuestra Boda
+            </div>
+            <div class="countdown" id="countdown">
+                </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <h2>Nos Casamos</h2>
+        <div class="card">
+            <p>Con inmensa alegría, queremos compartir con ustedes el día en que uniremos nuestras vidas para siempre. Su presencia es nuestro más preciado regalo, y nos haría muy felices que nos acompañen en este momento tan especial.</p>
+            <p>Gracias por ser parte de nuestra historia.</p>
+        </div>
+
+
+        <h2>Itinerario</h2>
+        <div class="itinerary-container">
+            <div class="itinerary-item">
+                <h3>Ceremonia Religiosa</h3>
+                <span class="itinerary-time">12:00 PM</span>
+                <p>Parroquia de San Judas Tadeo y de la Santa Cruz</p>
+                <a href="https://maps.app.goo.gl/nsExT5CH97KHWAaGAEvento" target="_blank" class="location-link">
+                    Ver Ubicación en Mapa
+                </a>
+            </div>
+
+            <div class="itinerary-item">
+                <h3>Recepción Nupcial</h3>
+                <span class="itinerary-time">14:00 PM</span>
+                <p>Salón de Eventos La Ermita</p>
+                <a href="https://maps.app.goo.gl/gyR2NbZVuNd4LWFR8" target="_blank" class="location-link">
+                    Ver Ubicación en Mapa
+                </a>
+            </div>
+        </div>
+
+
+        <h2>Confirma Tu Asistencia</h2>
+        <div class="rsvp-card">
+            <p>Por favor, ayúdanos a planificar nuestro gran día. Con el fin de que todos puedan disfrutar de la velada, esta será una celebración exclusivamente para adultos.</p>
+            <form id="rsvp-form">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="asistencia">¿Podrás acompañarnos?</label>
+                <select id="asistencia" name="asistencia" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="si">Sí, con gusto.</option>
+                    <option value="no">No podré asistir.</option>
+                </select>
+
+                <label for="acompanantes">Número de Acompañantes (adultos):</label>
+                <input type="number" id="acompanantes" name="acompanantes" min="0" value="0">
+
+                <button type="submit">Enviar Confirmación</button>
+            </form>
+            <p id="rsvp-message" style="display: none;"></p>
+        </div>
+
+
+        <h2>Nuestra Historia en Imágenes</h2>
+        <p style="font-size:0.9em; color:var(--color-link); margin-bottom:20px;">Toca para pausar el movimiento</p>
+
+    </div> <div class="gallery-wrapper" id="gallery-wrapper">
+        <div class="collage-track">
+             <img src="car1.jpg" alt="Foto 1" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 2" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 3" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 4" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 5" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 6" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 7" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 8" onclick="openLightbox(this)">
+            <img src="car1.jpg" alt="Foto 9" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 10" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 11" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 12" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 13" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 14" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 15" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 16" onclick="openLightbox(this)">
+            <img src="car1.jpg" alt="Foto 17" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 18" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 19" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 20" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 21" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 22" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 23" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 24" onclick="openLightbox(this)">
+
+            <img src="car1.jpg" alt="Foto 1" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 2" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 3" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 4" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 5" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 6" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 7" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 8" onclick="openLightbox(this)">
+            <img src="car1.jpg" alt="Foto 9" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 10" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 11" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 12" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 13" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 14" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 15" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 16" onclick="openLightbox(this)">
+            <img src="car1.jpg" alt="Foto 17" onclick="openLightbox(this)">
+            <img src="car2.jpg" alt="Foto 18" onclick="openLightbox(this)">
+            <img src="car3.jpg" alt="Foto 19" onclick="openLightbox(this)">
+            <img src="car4.jpg" alt="Foto 20" onclick="openLightbox(this)">
+            <img src="car5.jpg" alt="Foto 21" onclick="openLightbox(this)">
+            <img src="car6.jpg" alt="Foto 22" onclick="openLightbox(this)">
+            <img src="car7.jpg" alt="Foto 23" onclick="openLightbox(this)">
+            <img src="car8.jpg" alt="Foto 24" onclick="openLightbox(this)">
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">×</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="names-box">
+                <h1>Juan <span class="ampersand">&</span> María</h1>
+            </div>
+            <div class="date-text">
+                20.05.2027 | Nuestra Boda
+            </div>
+            <p>¡Esperamos con ansias celebrar este día con ustedes!</p>
+        </div>
+    </footer>
+
+    <div id="sticky-footer">
+        <span class="footer-text">
+            <a href="https://wa.me/524274270566?text=Quisiera%20mas%20informacion%20sobre%20las%20invitaciones%20digitales" target="_blank" class="logo-link">
+                <img src="DigitalCore-blanco.png" alt="Logo de Digital Core" class="footer-logo">
+            </a>
+            Invitación de prueba creada por Digital Core. Cotiza y solicita tu diseño aqui.
+        </span>
+        <a href="https://wa.me/524274270566?text=Quisiera%20mas%20informacion%20sobre%20las%20invitaciones%20digitales" target="_blank" class="whatsapp-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.47 2.72 3.78 5.03 6.49 6.49l2.77-2.77c.27-.27.67-.36 1.02-.18 1.12.56 2.33.88 3.57.88.5 0 .98.4.98.88V20c0 .5-.48.88-.98.88-4.7 0-9.2-.1-13.6-4.5-4.4-4.4-4.5-8.9-4.5-13.6 0-.5.38-.98.88-.98h3.33c.48 0 .88.48.88.98 0 1.25.32 2.45.88 3.57.18.35.09.75-.18 1.02l-2.77 2.77z"/></svg>
+            <span class="button-text">Contáctanos</span>
+        </a>
+    </div>
+    <script>
+        // Lógica de la Cuenta Regresiva (funcional)
+        const weddingDate = new Date("May 20, 2027 12:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const countdownEl = document.getElementById("countdown");
+
+            if (!countdownEl) return;
+
+            if (distance < 0) {
+                countdownEl.innerHTML = "¡La Celebración ha Comenzado!";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const format = num => num < 10 ? "0" + num : num;
+
+            countdownEl.innerHTML = `
+                <div><span>${format(days)}</span><span>Días</span></div>
+                <div><span>${format(hours)}</span><span>Horas</span></div>
+                <div><span>${format(minutes)}</span><span>Minutos</span></div>
+                <div><span>${format(seconds)}</span><span>Segundos</span></div>
+            `;
+        }
+
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+
+        // JavaScript para el Formulario RSVP (simulado)
+        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const messageElement = document.getElementById('rsvp-message');
+            messageElement.style.display = 'block';
+
+            const nombre = document.getElementById('nombre').value;
+            const asistencia = document.getElementById('asistencia').value;
+            const primerNombre = nombre.split(' ')[0];
+
+            if (asistencia === 'si') {
+                messageElement.innerHTML = `¡Gracias por tu confirmación, ${primerNombre}!`;
+                messageElement.style.color = 'var(--color-acento)';
+            } else if (asistencia === 'no') {
+                messageElement.innerHTML = `Lamentamos que no puedas asistir, ${primerNombre}. Gracias por avisarnos.`;
+                messageElement.style.color = 'var(--color-acento)';
+            } else {
+                 messageElement.innerHTML = `Por favor, selecciona una opción de asistencia.`;
+                 messageElement.style.color = 'red';
+            }
+
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        });
+
+        // JavaScript para el Lightbox de la Galería
+        function openLightbox(element) {
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = element.src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // JavaScript para Pausar la Galería en Táctil (Móvil) y Hover (Escritorio)
+        const galleryWrapper = document.getElementById('gallery-wrapper');
+
+        galleryWrapper.addEventListener('mouseenter', () => galleryWrapper.classList.add('paused'));
+        galleryWrapper.addEventListener('mouseleave', () => galleryWrapper.classList.remove('paused'));
+        galleryWrapper.addEventListener('touchstart', () => galleryWrapper.classList.add('paused'), { passive: true });
+        galleryWrapper.addEventListener('touchend', () => galleryWrapper.classList.remove('paused'));
+        galleryWrapper.addEventListener('touchcancel', () => galleryWrapper.classList.remove('paused'));
+
+
+        // ****** INICIO SCRIPT FOOTER FIJO ******
+        const stickyFooter = document.getElementById('sticky-footer');
+        const heroSection = document.querySelector('.hero-section');
+        const heroHeight = heroSection.offsetHeight;
+
+        window.addEventListener('scroll', function() {
+            // Muestra el footer 50px ANTES de que termine el hero-section
+            if (window.scrollY > (heroHeight - 50)) {
+                stickyFooter.classList.add('visible');
+            } else {
+                stickyFooter.classList.remove('visible');
+            }
+        });
+        // ****** FIN SCRIPT FOOTER FIJO ******
+
+    </script>
+</body>
+</html>
